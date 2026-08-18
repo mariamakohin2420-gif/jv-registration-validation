@@ -1,13 +1,13 @@
 package core.basesyntax.service;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+
 import core.basesyntax.exception.RegistrationException;
 import core.basesyntax.model.User;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class RegistrationServiceImplTest {
     private RegistrationService registrationService;
@@ -58,7 +58,7 @@ class RegistrationServiceImplTest {
 
     @Test
     void register_exsistingLogin_notOk() {
-        User  firstUser = createValidUser();
+        User firstUser = createValidUser();
         firstUser.setLogin("existingLogin");
         registrationService.register(firstUser);
         User secondUser = createValidUser();
