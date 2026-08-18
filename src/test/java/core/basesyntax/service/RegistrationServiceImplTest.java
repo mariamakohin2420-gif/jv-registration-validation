@@ -21,7 +21,6 @@ class RegistrationServiceImplTest {
     void register_validUser_ok() {
         User user = createValidUser();
         user.setLogin("validLogin");
-        user.setPassword("validPassword");
         User registeredUser = registrationService.register(user);
         assertNotNull(registeredUser);
         assertEquals(user.getLogin(), registeredUser.getLogin());
@@ -42,20 +41,20 @@ class RegistrationServiceImplTest {
     @Test
     void register_shortLogin_notOk() {
         User user = createValidUser();
-        user.setLogin("abcd");
+        user.setLogin("abcde");
         assertThrows(RegistrationException.class, () -> registrationService.register(user));
     }
 
     @Test
     void register_minValidLoginLength_ok() {
         User user = createValidUser();
-        user.setLogin("123456");
+        user.setLogin("login6");
         User registeredUser = registrationService.register(user);
         assertNotNull(registeredUser);
     }
 
     @Test
-    void register_exsistingLogin_notOk() {
+    void register_exsistingUserLogin_notOk() {
         User firstUser = createValidUser();
         firstUser.setLogin("existingLogin");
         registrationService.register(firstUser);
