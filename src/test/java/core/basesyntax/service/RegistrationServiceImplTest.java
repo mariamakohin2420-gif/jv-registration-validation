@@ -19,11 +19,9 @@ class RegistrationServiceImplTest {
 
     @Test
     void register_validUser_ok() {
-        User user = new User();
+        User user = createValidUser();
         user.setLogin("validLogin");
         user.setPassword("validPassword");
-        user.setAge(20);
-
         User registeredUser = registrationService.register(user);
         assertNotNull(registeredUser);
         assertEquals(user.getLogin(), registeredUser.getLogin());
@@ -83,6 +81,7 @@ class RegistrationServiceImplTest {
     @Test
     void regiter_minValidPasswordLength_ok() {
         User user = createValidUser();
+        user.setLogin("validPasswordUser");
         user.setPassword("123456");
         User registeredUser = registrationService.register(user);
         assertNotNull(registeredUser);
@@ -112,6 +111,7 @@ class RegistrationServiceImplTest {
     @Test
     void register_minValidAge_ok() {
         User user = createValidUser();
+        user.setLogin("uniqueMinAgeLogin");
         user.setAge(18);
         User registeredUser = registrationService.register(user);
         assertNotNull(registeredUser);
