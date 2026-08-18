@@ -13,7 +13,7 @@ public class RegistrationServiceImpl implements RegistrationService {
         if (user == null) {
             throw new RegistrationException("User cannot be null");
         }
-        if (user.getLogin()== null) {
+        if (user.getLogin() == null) {
             throw new RegistrationException("Login cannot be null");
         }
         if (user.getLogin().length() < 6) {
